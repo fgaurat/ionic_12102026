@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/preferences"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Thème</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-radio-group
+    [value]="themeService.mode()"
+    (ionChange)="themeService.mode.set($event.detail.value)"
+  >
+    <ion-list [inset]="true">
+      <ion-list-header>Mode</ion-list-header>
+      @for (m of modes; track m.value) {
+      <ion-item>
+        <ion-radio [value]="m.value">{{ m.label }}</ion-radio>
+      </ion-item>
+      }
+    </ion-list>
+  </ion-radio-group>
+
+  <ion-list [inset]="true">
+    <ion-list-header>Couleur d'accent</ion-list-header>
+    <ion-item lines="none">
+      <div class="swatches">
+        @for (a of accents; track a.id) {
+        <button
+          type="button"
+          class="swatch"
+          [class.selected]="themeService.accent() === a.id"
+          [style.background]="a.color"
+          [attr.aria-label]="a.label"
+          (click)="themeService.accent.set(a.id)"
+        ></button>
+        }
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "todolist-ionic-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

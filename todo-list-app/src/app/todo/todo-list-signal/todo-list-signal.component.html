@@ -1,0 +1,25 @@
+<h1>TodoList Signal</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>userId</th>
+      <th>Title</th>
+      <th>Completed</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (todo of todos(); track todo.id) {
+      <tr>
+        <td>{{ todo.id }}</td>
+        <td>{{ todo.userId }}</td>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.completed }}</td>
+        <td>
+          <button (click)="delete(todo)">delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

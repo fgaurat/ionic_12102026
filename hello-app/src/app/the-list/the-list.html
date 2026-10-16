@@ -1,0 +1,27 @@
+<p>the-list works!</p>
+
+
+<ul>
+
+    @for (todo of todos; track todo.id) {
+        <li>{{todo.title}}</li>
+        <li>{{todo.completed?"ok":"ko"}}</li>
+        @if(todo.completed){
+            <li>
+                <strong>OKKKKK</strong>
+            </li>
+        }
+        @else{
+            <li>
+                <strong>KOOOO</strong>
+            </li>
+        }
+    }
+</ul>
+
+    {{values}}
+    @for (value of values; track value) {
+    {{value}}
+    }
+
+

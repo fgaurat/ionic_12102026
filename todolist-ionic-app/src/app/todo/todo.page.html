@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Détail</ion-title>
+    @if (todo()) {
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="remove()">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    }
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (notFound()) {
+  <ion-list [inset]="true">
+    <ion-item lines="none">Tâche introuvable</ion-item>
+  </ion-list>
+  } @else if (todo(); as t) {
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-input
+        label="Titre"
+        labelPlacement="stacked"
+        [value]="title()"
+        (ionInput)="title.set($event.detail.value ?? '')"
+        (ionBlur)="save()"
+        (keyup.enter)="save()"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-toggle
+        [checked]="t.completed"
+        (ionChange)="toggle($event.detail.checked)"
+        >Terminée</ion-toggle
+      >
+    </ion-item>
+  </ion-list>
+  } @else {
+  <ion-list [inset]="true">
+    <ion-item
+      ><ion-skeleton-text
+        [animated]="true"
+        style="width: 60%"
+      ></ion-skeleton-text
+    ></ion-item>
+    <ion-item
+      ><ion-skeleton-text
+        [animated]="true"
+        style="width: 40%"
+      ></ion-skeleton-text
+    ></ion-item>
+  </ion-list>
+  }
+</ion-content>

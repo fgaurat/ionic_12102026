@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Tab 1 </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-button id="btn-show-alert">show alert</ion-button>
+  <ion-button (click)="onShowAlert()">show alert</ion-button>
+
+  <ion-alert
+    trigger="btn-show-alert"
+    header="Confirmation"
+    message="Le message"
+    [buttons]="alertButtons"
+    (didDismiss)="onDidDismiss($event)"
+  ></ion-alert>
+
+  <app-explore-container name="Tab 1 page"></app-explore-container>
+</ion-content>

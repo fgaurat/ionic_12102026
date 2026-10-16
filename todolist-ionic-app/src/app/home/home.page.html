@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> TodoList </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/preferences">
+        <ion-icon slot="icon-only" name="settings" />
+      </ion-button>
+      <ion-button (click)="echo()">
+        <ion-icon slot="icon-only" name="beer" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input
+      [(ngModel)]="todoTitle"
+      placeholder="Nouvelle todo ..."
+      enterkeyhint="search"
+    ></ion-input>
+    <ion-button slot="end" (click)="add()">
+      <ion-icon name="add" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    @if(loading()){
+
+    <ion-item>
+      <ion-skeleton-text
+        slot="start"
+        [animated]="true"
+        class="skeleton-check"
+      ></ion-skeleton-text>
+      <ion-label>
+        <ion-skeleton-text
+          [animated]="true"
+          style="width: 70%"
+        ></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+
+    } @else{ @for (todo of todos(); track todo.id) {
+    <ion-item-sliding #sliding>
+      <ion-item-options side="start" (ionSwipe)="swipeToggle(todo,sliding)">
+        <ion-item-option color="primary" expandable="true"
+          >Complete</ion-item-option
+        >
+      </ion-item-options>
+
+      <ion-item [routerLink]="['/todo',todo.id]" [detail]="true">
+        <ion-checkbox
+          slot="start"
+          [checked]="todo.completed"
+          (ionChange)="toggle(todo,$event.detail.checked)"
+          (click)="$event.stopPropagation()"
+          aria-label="Terminée"
+        ></ion-checkbox>
+
+        <ion-label [class.completed]="todo.completed">{{todo.title}}</ion-label>
+
+        <!-- <ion-button slot="end" (click)="remove(todo)">
+        <ion-icon name="trash" slot="icon-only"></ion-icon>
+      </ion-button> -->
+      </ion-item>
+
+      <ion-item-options side="end" (ionSwipe)="remove(todo,sliding)">
+        <ion-item-option color="danger" expandable="true"
+          >Delete</ion-item-option
+        >
+      </ion-item-options>
+    </ion-item-sliding>
+
+    } }
+  </ion-list>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Préférences</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list [inset]="true">
+    <ion-list-header>Liste</ion-list-header>
+    <ion-item>
+      <ion-toggle
+        [checked]="prefs.hideCompleted()"
+        (ionChange)="prefs.hideCompleted.set($event.detail.checked)"
+      >
+        Masquer les tâches terminées
+      </ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-toggle
+        [checked]="prefs.confirmDelete()"
+        (ionChange)="prefs.confirmDelete.set($event.detail.checked)"
+      >
+        Confirmer avant de supprimer
+      </ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list [inset]="true">
+    <ion-list-header>Apparence</ion-list-header>
+    <ion-item routerLink="/theme" [detail]="true">
+      <ion-icon slot="start" name="color-palette"></ion-icon>
+      <ion-label>Thème</ion-label>
+      <ion-note slot="end">{{ modeLabels[themeService.mode()] }}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

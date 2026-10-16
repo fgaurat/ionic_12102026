@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">todolist-ionic-app</string>
+    <string name="title_activity_main">todolist-ionic-app</string>
+    <string name="package_name">com.sinari.todolistapp</string>
+    <string name="custom_url_scheme">com.sinari.todolistapp</string>
+</resources>

@@ -1,0 +1,6 @@
+<p>todo-form works!</p>
+<form [formGroup]="todoForm" (ngSubmit)="save()">
+  <input type="text" formControlName="title" />
+  <input type="checkbox" formControlName="completed" />
+  <button type="submit">save</button>
+</form>

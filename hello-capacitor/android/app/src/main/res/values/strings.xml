@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Hello Capacitor</string>
+    <string name="title_activity_main">Hello Capacitor</string>
+    <string name="package_name">com.sinari.hellocapacitor</string>
+    <string name="custom_url_scheme">com.sinari.hellocapacitor</string>
+</resources>
